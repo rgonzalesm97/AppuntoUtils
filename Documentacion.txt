@@ -8,15 +8,29 @@ appuntoutils-env\Scripts\activate.bat
 uvicorn main:app --reload
 
 #TEST
-{
-  "partner_id": 2,
-  "fecha_inicio": "2023-04-03",
-  "fecha_fin": "2023-04-30",
-  "lunes": "9-12, 14-17",
-  "martes": "10-15",
-  "miercoles": "10-15",
-  "jueves": "9-12, 14-17",
-  "viernes": "10-15",
-  "sabado": "10-10",
-  "domingo": ""
-}
+[
+  {
+    "partner_id": 2,
+    "fecha_inicio": "2023-04-03",
+    "fecha_fin": "2023-04-05",
+    "lunes": "9-12, 14-17",
+    "martes": "10-15",
+    "miercoles": "10-15",
+    "jueves": "9-12, 14-17",
+    "viernes": "10-15",
+    "sabado": "10-10",
+    "domingo": ""
+  },
+  {
+    "partner_id": 15,
+    "fecha_inicio": "2023-04-11",
+    "fecha_fin": "2023-04-30",
+    "lunes": "14-19",
+    "martes": "14-19",
+    "miercoles": "10-15",
+    "jueves": "14-19",
+    "viernes": "14-19",
+    "sabado": "",
+    "domingo": ""
+  }
+]

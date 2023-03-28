@@ -1,10 +1,9 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import Optional
-from datetime import date
-import pandas as pd
-from datetime import timedelta
+from typing import Optional, List
+from datetime import date, timedelta
 from fastapi.responses import StreamingResponse
+import pandas as pd
 
 
 class RequestDateAvailabilityDto(BaseModel):
@@ -40,7 +39,7 @@ def rango_horas(texto):
     return horas
 
 
-def generate_list(requestAvailability: RequestDateAvailabilityDto):
+def generate_list_df(requestAvailability: RequestDateAvailabilityDto):
     fecha_inicial = requestAvailability.fecha_inicio
     fecha_final = requestAvailability.fecha_fin
     horas_disponibles_por_dia = {}
@@ -74,13 +73,17 @@ def generate_list(requestAvailability: RequestDateAvailabilityDto):
         'status':[1]*len(fechas)
     }
 
-    df = pd.DataFrame(disponibilidad)
-
-    return df.to_csv(index=False)
+    return pd.DataFrame(disponibilidad)
 
 @app.post("/disponibilidad")
-def index(requestAvailability: RequestDateAvailabilityDto):
-    csv_list = generate_list(requestAvailability)
+def index(requestAvailabilityList: List[RequestDateAvailabilityDto]):
+    df_list = [];
+    for request in requestAvailabilityList:
+        df_list.append(generate_list_df(request))
+
+    df_list_concat = pd.concat(df_list)
+    csv_list = df_list_concat.to_csv(index=False)
+    
     return StreamingResponse(
         iter([csv_list]), 
         media_type="text/csv", 
