@@ -1,0 +1,8 @@
+#Se crea un entorno virtual de python
+python3 -m venv appuntoutils-env
+
+#Se activa el entorno virtual
+appuntoutils-env\Scripts\activate.bat
+
+#Iniciar el servidor
+uvicorn main:app --reload
