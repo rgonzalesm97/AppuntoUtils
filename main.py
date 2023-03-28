@@ -4,11 +4,8 @@ from typing import Optional
 from datetime import date
 import pandas as pd
 from datetime import timedelta
-import locale
 from fastapi.responses import StreamingResponse
 
-
-locale.setlocale(locale.LC_ALL, 'es_ES')
 
 class RequestDateAvailabilityDto(BaseModel):
     partner_id: int
@@ -25,13 +22,13 @@ class RequestDateAvailabilityDto(BaseModel):
 app = FastAPI()
 
 days_list = {
-    'lunes': 'Lunes',
-    'martes': 'Martes',
-    'miercoles': 'Miércoles',
-    'jueves': 'Jueves',
-    'viernes': 'Viernes',
-    'sabado': 'Sábado',
-    'domingo': 'Domingo'
+    'lunes': 'Monday',
+    'martes': 'Tuesday',
+    'miercoles': 'Wednesday',
+    'jueves': 'Thursday',
+    'viernes': 'Friday',
+    'sabado': 'Saturday',
+    'domingo': 'Sunday'
 }
 
 def rango_horas(texto):
