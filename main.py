@@ -7,7 +7,6 @@ from datetime import timedelta
 import locale
 from fastapi.responses import StreamingResponse
 
-app = FastAPI()
 
 locale.setlocale(locale.LC_ALL, 'es_ES')
 
@@ -22,6 +21,8 @@ class RequestDateAvailabilityDto(BaseModel):
     viernes: Optional[str]
     sabado: Optional[str]
     domingo: Optional[str]
+
+app = FastAPI()
 
 days_list = {
     'lunes': 'Lunes',
